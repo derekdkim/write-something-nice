@@ -5,8 +5,16 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../constants/Colors';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
+import { Button } from 'react-native';
+
+const { useState } = React;
 
 export default function EditScreenInfo({ path }: { path: string }) {
+  const [showHelloWorld, setShowHelloWorld] = useState(false);
+
+  const toggleHelloWorld = () => {
+    setShowHelloWorld(!showHelloWorld);
+  }
   return (
     <View>
       <View style={styles.getStartedContainer}>
@@ -38,6 +46,17 @@ export default function EditScreenInfo({ path }: { path: string }) {
             Tap here if your app doesn't automatically update after making changes
           </Text>
         </TouchableOpacity>
+      </View>
+
+      <View>
+        { showHelloWorld &&
+          <Text>Hello World</Text>
+        }
+        <Button 
+          onPress={ toggleHelloWorld }
+          title="Toggle Hello World"
+          accessibilityLabel="Toggle the display of Hello World"
+        />
       </View>
     </View>
   );
